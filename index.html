@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSUD Kabupaten Kepulauan Talaud</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #42a5f5;
+            --accent-color: #0d47a1;
+            --light-color: #e3f2fd;
+            --dark-color: #01579b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+            color: white !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            margin: 0 8px;
+            transition: all 0.3s;
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: white !important;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .org-chart {
+            padding: 20px 0;
+        }
+        
+        .org-box {
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px auto;
+            text-align: center;
+            position: relative;
+            max-width: 350px;
+        }
+        
+        .org-box.director {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .org-box.plt {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .org-box.kasubag {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .org-box.kabid {
+            background-color: #bbdefb;
+            color: var(--dark-color);
+        }
+        
+        .org-box.kasie {
+            background-color: #e1f5fe;
+            color: var(--dark-color);
+        }
+        
+        .org-line {
+            width: 2px;
+            height: 30px;
+            background-color: var(--primary-color);
+            margin: 0 auto;
+        }
+        
+        .org-horizontal-line {
+            height: 2px;
+            background-color: var(--primary-color);
+            margin: 10px 0;
+        }
+        
+        .org-branch {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .org-branch-item {
+            flex: 1;
+            max-width: 300px;
+            margin: 0 10px;
+        }
+        
+        .org-vertical-line {
+            width: 2px;
+            height: 30px;
+            background-color: var(--primary-color);
+            margin: 0 auto;
+        }
+        
+        .org-sub-branch {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .org-sub-item {
+            flex: 1;
+            min-width: 200px;
+            margin: 0 5px 15px;
+        }
+        
+        .testimonial {
+            background-color: var(--light-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .accreditation-star {
+            color: #ffc107;
+            font-size: 2rem;
+        }
+        
+        .committee-card {
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .room-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .room-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .table-custom {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .table-custom thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .table-custom tbody tr:nth-child(even) {
+            background-color: var(--light-color);
+        }
+        
+        .table-custom tbody tr:hover {
+            background-color: #bbdefb;
+        }
+        
+        .certificate-container {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .certificate-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .certificate-details {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .certificate-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .detail-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            color: #333;
+        }
+        
+        .highlight-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .zoom-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: zoom-in;
+        }
+        
+        .zoom-container:hover .certificate-image {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .facility-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .facility-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .facility-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .service-card {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            background-color: white;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-hospital me-2"></i>
+                RSUD Kabupaten Kepulauan Talaud
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="beranda">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="profil">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="pelayanan">Pelayanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="ruangan">Ruangan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="jadwal">Jadwal Spesialis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="akreditasi">Akreditasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="komite">Komite</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Beranda Section -->
+    <section id="beranda" class="page-section active">
+        <div class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold mb-4">RSUD Kabupaten Kepulauan Talaud</h1>
+                        <p class="lead mb-4">Melayani dengan Hati untuk Masyarakat Kepulauan Talaud</p>
+                        <p class="mb-4">Rumah Sakit Umum Daerah Kabupaten Kepulauan Talaud berkomitmen menjadi pusat layanan kesehatan terpercaya bagi masyarakat Kepulauan Talaud dengan menyediakan pelayanan medis yang berkualitas dan terjangkau.</p>
+                        <a href="#" class="btn btn-light btn-lg" data-page="profil">Tentang Kami <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://z-cdn-media.chatglm.cn/files/5f5a5bd6-c506-4df6-b61f-25bb15104368_rsud%201.jpg?auth_key=1863057081-8bc5ca7e9b80402092602e3916dc4ea5-0-2b50b9630c61b2d48dba91df16320385" alt="RSUD Talaud" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-center mb-4">Visi Kami</h2>
+                    <div class="testimonial">
+                        <p class="mb-0 fs-5">"Menjadi Rumah Sakit Yang Unggul dan Terpercaya"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-center mb-4">Misi Kami</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-heart-pulse-fill service-icon"></i>
+                                    <h5 class="card-title">Pelayanan Berkualitas</h5>
+                                    <p class="card-text">Menyelenggarakan pelayanan kesehatan bermutu dan terjangkau</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-people-fill service-icon"></i>
+                                    <h5 class="card-title">Pengelolaan Profesional</h5>
+                                    <p class="card-text">Menyelenggarakan pengelolaan sumber daya rumah sakit secara profesional</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-mortarboard-fill service-icon"></i>
+                                    <h5 class="card-title">Peningkatan Kompetensi</h5>
+                                    <p class="card-text">Menyelenggarakan peningkatan ilmu dan keterampilan tenaga rumah sakit</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-center mb-4">Fasilitas Unggulan</h2>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="facility-card h-100">
+                                <h5 class="facility-title">Instalasi Gawat Darurat</h5>
+                                <p>Pelayanan gawat darurat 24 jam dengan tenaga medis profesional</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="facility-card h-100">
+                                <h5 class="facility-title">Laboratorium</h5>
+                                <p>Pemeriksaan laboratorium lengkap dengan peralatan modern</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="facility-card h-100">
+                                <h5 class="facility-title">Radiologi</h5>
+                                <p>Pelayanan radiologi dengan teknologi canggih untuk diagnosa akurat</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="facility-card h-100">
+                                <h5 class="facility-title">Ruang Rawat Inap</h5>
+                                <p>Kenyamanan dan perawatan optimal untuk masa pemulihan pasien</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil Section -->
+    <section id="profil" class="page-section">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Profil RSUD Kabupaten Kepulauan Talaud</h1>
+            
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <h2>Sejarah Singkat</h2>
+                    <p>RSUD Kabupaten Kepulauan Talaud merupakan fasilitas kesehatan milik pemerintah daerah yang berlokasi di Kepulauan Talaud, Sulawesi Utara. Sejak didirikan, rumah sakit ini terus berkomitmen untuk memberikan pelayanan kesehatan terbaik bagi masyarakat Kepulauan Talaud dan sekitarnya.</p>
+                    <p>Dengan dukungan tenaga medis profesional dan fasilitas yang memadai, RSUD Talaud terus berkembang menjadi rumah sakit rujukan di wilayah Kepulauan Talaud.</p>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-center mb-4">Visi dan Misi</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Visi</h3>
+                            <p class="card-text fs-5">Menjadi Rumah Sakit Yang Unggul dan Terpercaya</p>
+                            
+                            <h3 class="card-title mt-4">Misi</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Menyelenggarakan pelayanan kesehatan bermutu dan terjangkau</li>
+                                <li class="list-group-item">Menyelenggarakan pengelolaan sumber daya rumah sakit secara profesional</li>
+                                <li class="list-group-item">Menyelenggarakan peningkatan ilmu dan keterampilan tenaga rumah sakit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center mb-4">Struktur Organisasi</h2>
+                    <div class="org-chart">
+                        <!-- Direktur -->
+                        <div class="org-box director mx-auto">
+                            <h5>Direktur</h5>
+                            <p>Dr. dr. Jawali J. Ektivianus, M.Kes, FIHFAA</p>
+                            <p class="small mb-0">NIP. 19721001 200012 1 004</p>
+                        </div>
+                        <div class="org-line"></div>
+                        
+                        <!-- Plt. Kepala Bagian Tata Usaha -->
+                        <div class="org-box plt mx-auto">
+                            <h5>Plt. Kepala Bagian Tata Usaha</h5>
+                            <p>Owsan Lakumani Tinenta, S.Kep</p>
+                            <p class="small mb-0">NIP. 19791014 200312 1 003</p>
+                        </div>
+                        <div class="org-line"></div>
+                        
+                        <!-- Kasubag -->
+                        <div class="org-branch">
+                            <div class="org-branch-item">
+                                <div class="org-box kasubag">
+                                    <h6>Kasubag. Perencanaan, Evaluasi & Pelaporan</h6>
+                                    <p>Fennyce Tulis, SM</p>
+                                    <p class="small mb-0">NIP. 19780215 200312 2 007</p>
+                                </div>
+                            </div>
+                            <div class="org-branch-item">
+                                <div class="org-box kasubag">
+                                    <h6>Kasubag. Kepegawaian, Hukum & Umum</h6>
+                                    <p>Mervie J. Marlissa, SKM</p>
+                                    <p class="small mb-0">NIP. 19840419 200903 2 005</p>
+                                </div>
+                            </div>
+                            <div class="org-branch-item">
+                                <div class="org-box kasubag">
+                                    <h6>Kasubag. Keuangan</h6>
+                                    <p>Uni Lolopadang, S.Mn</p>
+                                    <p class="small mb-0">NIP. 19730616 200501 2 011</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="org-horizontal-line"></div>
+                        <div class="org-vertical-line"></div>
+                        
+                        <!-- Kepala Bidang -->
+                        <div class="org-branch">
+                            <div class="org-branch-item">
+                                <div class="org-box kabid">
+                                    <h6>Kabid. Pelayanan Medik</h6>
+                                    <p>Elisrah W. Sedu, S.Kep. Ns</p>
+                                    <p class="small mb-0">NIP. 19700914 199503 2 006</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-box kasie">
+                                    <h6>Kasie. SDM & Operasional Pelayanan Medik</h6>
+                                    <p>Inn Pratiwi Ulaen, S.A.P</p>
+                                    <p class="small mb-0">NIP. 19880405 201001 2 003</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-box kasie">
+                                    <h6>Kasie. Sapras, Alat, Pelaporan & Kendali Mutu</h6>
+                                    <p>Imela O. Gahiwu, S.Kep, M.Kes</p>
+                                    <p class="small mb-0">NIP. 19781230 200212 2 004</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-sub-branch">
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Gawat Darurat</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Rawat Jalan</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Bedah Sentral</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Rawat Inap</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="org-branch-item">
+                                <div class="org-box kabid">
+                                    <h6>Kabid. Penunjang Medik</h6>
+                                    <p>Sonny H. Larenggam, SKM</p>
+                                    <p class="small mb-0">NIP. 19720928 199803 1 006</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-box kasie">
+                                    <h6>Kasie. Penunjang Medik</h6>
+                                    <p>Sulistia Sahambangung, SKM</p>
+                                    <p class="small mb-0">NIP. 19850403 200903 2 002</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-sub-branch">
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi CSSD</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Laboratorium</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Gizi</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Rekam Medik</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Farmasi</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Radiologi</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Fisioterapi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-box kasie">
+                                    <h6>Kasie. Penunjang Non Medik</h6>
+                                    <p>Hermanus J. Gagola, S.ST</p>
+                                    <p class="small mb-0">NIP. 19700128 199203 2 009</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-sub-branch">
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Binatu</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">IPSRS</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Pemulasaran Jenazah</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Ambulance</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">IPAL</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="org-branch-item">
+                                <div class="org-box kabid">
+                                    <h6>Kabid. Keperawatan & Kebidanan</h6>
+                                    <p>Ns. Lisye Gamis, S.kep</p>
+                                    <p class="small mb-0">NIP. 19800503 200501 2 014</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-box kasie">
+                                    <h6>Kasie. SDM & Operasional Keperawatan</h6>
+                                    <p>Jayatri A. Aimbu, A.Md.Kep</p>
+                                    <p class="small mb-0">NIP. 19840130 201001 2 005</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-box kasie">
+                                    <h6>Kasie. Sapras, Alat, Pelaporan & Kendali Mutu</h6>
+                                    <p>Rafles Maitum, S.Kep</p>
+                                    <p class="small mb-0">NIP. 19860822 201001 1 005</p>
+                                </div>
+                                <div class="org-line"></div>
+                                <div class="org-sub-branch">
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Gawat Darurat</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Rawat Jalan</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Bedah Sentral</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-sub-item">
+                                        <div class="org-box">
+                                            <p class="mb-0">Instalasi Rawat Inap</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="org-horizontal-line"></div>
+                        <div class="org-vertical-line"></div>
+                        
+                        <!-- Kelompok Jabatan Fungsional -->
+                        <div class="org-box mx-auto">
+                            <h5>Kelompok Jabatan Fungsional</h5>
+                            <div class="org-sub-branch mt-3">
+                                <div class="org-sub-item">
+                                    <div class="org-box">
+                                        <p class="mb-0">SPI</p>
+                                    </div>
+                                </div>
+                                <div class="org-sub-item">
+                                    <div class="org-box">
+                                        <p class="mb-0">DEWAS</p>
+                                    </div>
+                                </div>
+                                <div class="org-sub-item">
+                                    <div class="org-box">
+                                        <p class="mb-0">KOMITE</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2 class="text-center mb-4">Galeri Kegiatan</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <img src="https://picsum.photos/seed/activity1/400/300.jpg" class="img-fluid rounded shadow" alt="Kegiatan 1">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <img src="https://picsum.photos/seed/activity2/400/300.jpg" class="img-fluid rounded shadow" alt="Kegiatan 2">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <img src="https://picsum.photos/seed/activity3/400/300.jpg" class="img-fluid rounded shadow" alt="Kegiatan 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pelayanan Section -->
+    <section id="pelayanan" class="page-section">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Pelayanan RSUD Kabupaten Kepulauan Talaud</h1>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan IGD 24 Jam</h5>
+                        <p>Instalasi Gawat Darurat kami siap melayani pasien darurat selama 24 jam dengan tenaga medis yang terlatih dan peralatan medis lengkap.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan Rawat Jalan dan Rawat Inap</h5>
+                        <p>Kami menyediakan pelayanan rawat jalan untuk konsultasi medis dan rawat inap dengan berbagai kelas kamar yang nyaman.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan Laboratorium</h5>
+                        <p>Laboratorium kami dilengkapi dengan peralatan modern untuk berbagai pemeriksaan darah, urine, dan lainnya dengan hasil yang akurat.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan Radiologi</h5>
+                        <p>Pelayanan radiologi dengan teknologi canggih untuk pemeriksaan X-ray, USG, dan CT scan untuk diagnosa yang tepat.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan Fisioterapi</h5>
+                        <p>Tim fisioterapi kami siap membantu pemulihan pasien dengan berbagai terapi fisik yang disesuaikan dengan kondisi pasien.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan Farmasi</h5>
+                        <p>Farmasi kami menyediakan berbagai obat-obatan berkualitas dengan konsultasi dari apoteker profesional.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan Gizi</h5>
+                        <p>Konsultasi gizi dan menu makanan sehat untuk pasien dengan penyesuaian kebutuhan nutrisi sesuai kondisi medis.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card h-100">
+                        <h5 class="service-title">Pelayanan Ambulance</h5>
+                        <p>Layanan ambulance 24 jam untuk transportasi medis darurat dengan peralatan lengkap dan tenaga medis terlatih.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ruangan Section -->
+    <section id="ruangan" class="page-section">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Ruangan Rumah Sakit</h1>
+            
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-exclamation-triangle-fill room-icon"></i>
+                        <h5>IGD</h5>
+                        <p>Instalasi Gawat Darurat</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-heart-pulse-fill room-icon"></i>
+                        <h5>ICU</h5>
+                        <p>Intensive Care Unit</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-person-hearts room-icon"></i>
+                        <h5>Ruang Bersalin</h5>
+                        <p>Fasilitas persalinan modern</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-emoji-smile-fill room-icon"></i>
+                        <h5>Ruang Bayi</h5>
+                        <p>Perawatan khusus bayi</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-emoji-smile-fill room-icon"></i>
+                        <h5>Ruang Anak</h5>
+                        <p>Perawatan khusus anak-anak</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-bandaid-fill room-icon"></i>
+                        <h5>Ruang Bedah</h5>
+                        <p>Ruang operasi modern</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-hospital room-icon"></i>
+                        <h5>Ruang Rawat Inap Kelas I</h5>
+                        <p>Kamar dengan fasilitas premium</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-hospital room-icon"></i>
+                        <h5>Ruang Rawat Inap Kelas II</h5>
+                        <p>Kamar dengan fasilitas standar</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-hospital room-icon"></i>
+                        <h5>Ruang Rawat Inap Kelas III</h5>
+                        <p>Kamar ekonomis dengan fasilitas dasar</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card room-card h-100">
+                        <i class="bi bi-shield-exclamation room-icon"></i>
+                        <h5>Ruang Isolasi</h5>
+                        <p>Ruang khusus pasien infeksius</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jadwal Spesialis Section -->
+    <section id="jadwal" class="page-section">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Jadwal Dokter Spesialis</h1>
+            
+            <div class="table-responsive">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Spesialis</th>
+                            <th>Nama Dokter</th>
+                            <th>Hari Praktik</th>
+                            <th>Jam Pelayanan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Spesialis Anak</td>
+                            <td>Hilda A. Tasiringan, Sp.A</td>
+                            <td>Senin-Jumat</td>
+                            <td>08.00-12.00</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Spesialis Anak</td>
+                            <td>Hilda A. Tasiringan, Sp.A</td>
+                            <td>Sabtu</td>
+                            <td>13.00-17.00</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Spesialis Kandungan</td>
+                            <td>dr. Rita M. Peginusa, Sp.Og(K)</td>
+                            <td>Senin-Jumat</td>
+                            <td>08.00-12.00</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Spesialis Radiologi</td>
+                            <td>dr. Rio Andono, Sp.Rad</td>
+                            <td>Senin-Sabtu</td>
+                            <td>08.00-12.45</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Spesialis Radiologi</td>
+                            <td>dr. Rio Andono, Sp.Rad</td>
+                            <td>Senin-Sabtu</td>
+                            <td>08.00-13.00</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Spesialis Patologi Klinik</td>
+                            <td>dr. Agnes Th. Motulo, Sp.PK</td>
+                            <td>Senin-Sabtu</td>
+                            <td>08.00-14.30</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Spesialis Patologi Klinik</td>
+                            <td>dr. Agnes Th. Motulo, Sp.PK</td>
+                            <td>Jumat</td>
+                            <td>08.00-13.00</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Spesialis Bedah</td>
+                            <td>dr. Stianila W. Sedu, MPH, Sp.B</td>
+                            <td>Senin-Kamis</td>
+                            <td>08.00-10.00</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Spesialis Bedah</td>
+                            <td>dr. Stianila W. Sedu, MPH, Sp.B</td>
+                            <td>Jumat</td>
+                            <td>13.00-17.00</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Spesialis Bedah</td>
+                            <td>dr. Stianila W. Sedu, MPH, Sp.B</td>
+                            <td>Sabtu</td>
+                            <td>08.00-10.00</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Spesialis Bedah</td>
+                            <td>dr. Yonathan N. Lukas, Sp.B</td>
+                            <td>Senin-Kamis</td>
+                            <td>10.00-12.00</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Spesialis Bedah</td>
+                            <td>dr. Yonathan N. Lukas, Sp.B</td>
+                            <td>Jumat</td>
+                            <td>08.00-12.00</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Spesialis Bedah</td>
+                            <td>dr. Yonathan N. Lukas, Sp.B</td>
+                            <td>Sabtu</td>
+                            <td>10.00-12.00</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Spesialis Penyakit Dalam</td>
+                            <td>dr. Ferdinan Goutama, Sp.PD</td>
+                            <td>Senin-Jumat</td>
+                            <td>08.00-12.00</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Spesialis Anestesi</td>
+                            <td>dr. Donal J. Doda.An-TI Subsp.T.I(K)</td>
+                            <td>Senin-Sabtu</td>
+                            <td>08.00-14.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert alert-info mt-4">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                <strong>Informasi:</strong> Jadwal dapat berubah sewaktu-waktu. Silakan hubungi pihak rumah sakit untuk konfirmasi jadwal terkini.
+            </div>
+        </div>
+    </section>
+
+    <!-- Akreditasi Section -->
+    <section id="akreditasi" class="page-section">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Akreditasi Rumah Sakit</h1>
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 text-center">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <h2 class="card-title mb-4">RSUD Talaud Terakreditasi Tingkat Utama</h2>
+                            <div class="mb-4">
+                                <i class="bi bi-star-fill accreditation-star"></i>
+                                <i class="bi bi-star-fill accreditation-star"></i>
+                                <i class="bi bi-star-fill accreditation-star"></i>
+                                <i class="bi bi-star-fill accreditation-star"></i>
+                            </div>
+                            <p class="card-text fs-5">RSUD Kabupaten Kepulauan Talaud telah berhasil meraih predikat Akreditasi Tingkat Utama dari Komite Akreditasi Rumah Sakit (KARS). Pengakuan ini membuktikan komitmen kami dalam memberikan pelayanan kesehatan berkualitas tinggi yang sesuai standar nasional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sertifikat Akreditasi -->
+            <div class="certificate-container">
+                <h2 class="text-center mb-4">Sertifikat Akreditasi</h2>
+                <div class="zoom-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/cd4bb61b-0da4-4d3f-8b4b-87c68605a498_Sertifikat%20Akreditasi%20RS%20Umum%20Daerah%20Talaud.jpg?auth_key=1863055645-e96c6ec4170d4387910959e9eecd82de-0-540e35917eb749ac50570182985ff478" alt="Sertifikat Akreditasi RSUD Talaud" class="certificate-image">
+                </div>
+                
+                <!-- Penjelasan Data Sertifikat -->
+                <div class="certificate-details">
+                    <h4><i class="bi bi-info-circle-fill me-2"></i>Detail Informasi Sertifikat Akreditasi</h4>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Nama Sertifikat</div>
+                        <div class="detail-value">SERTIFIKAT AKREDITASI RUMAH SAKIT</div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Nomor Sertifikat</div>
+                        <div class="detail-value">KARS - SERT/1471/IV/2024</div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Penerima Sertifikat</div>
+                        <div class="detail-value">RS Umum Daerah Talaud</div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Lokasi Rumah Sakit</div>
+                        <div class="detail-value">Kabupaten Kepulauan Talaud, Provinsi Sulawesi Utara, Kecamatan Melonguane</div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Predikat Akreditasi</div>
+                        <div class="detail-value">
+                            <span class="badge bg-success fs-6 p-2">TINGKAT UTAMA</span>
+                            <p class="mt-2 mb-0">Tingkat Utama adalah predikat tertinggi dalam sistem akreditasi rumah sakit di Indonesia, menunjukkan bahwa RSUD Talaud telah memenuhi semua standar pelayanan kesehatan dengan kualitas terbaik.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Masa Berlaku</div>
+                        <div class="detail-value">
+                            <i class="bi bi-calendar-check me-2"></i>
+                            <strong>18 April 2024 - 18 Maret 2028</strong>
+                            <p class="mt-2 mb-0">Sertifikat ini berlaku selama 4 tahun, menunjukkan kepercayaan penuh dari KARS terhadap kemampuan RSUD Talaud dalam mempertahankan kualitas pelayanan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Penerbit</div>
+                        <div class="detail-value">
+                            <ul class="list-unstyled mb-0">
+                                <li><i class="bi bi-shield-check me-2"></i>Komite Akreditasi Rumah Sakit (KARS)</li>
+                                <li><i class="bi bi-building me-2"></i>Kementerian Kesehatan Republik Indonesia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Tanggal Penerbitan</div>
+                        <div class="detail-value">
+                            <i class="bi bi-calendar-event me-2"></i>
+                            <strong>18 April 2024</strong>
+                            <p class="mt-2 mb-0">Diterbitkan di Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h5 class="mb-3"><i class="bi bi-award-fill me-2"></i>Pentingnya Akreditasi Tingkat Utama</h5>
+                        <p class="mb-2">Akreditasi Tingkat Utama yang diraih RSUD Talaud menunjukkan:</p>
+                        <ul class="mb-0">
+                            <li>Pelayanan kesehatan yang memenuhi standar nasional tertinggi</li>
+                            <li>Keselamatan pasien menjadi prioritas utama</li>
+                            <li>Tenaga medis profesional dan kompeten</li>
+                            <li>Fasilitas dan infrastruktur memadai</li>
+                            <li>Sistem manajemen mutu yang berkelanjutan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-award-fill text-primary me-2"></i>Tentang Akreditasi</h5>
+                            <p class="card-text">Akreditasi adalah pengakuan formal yang diberikan oleh lembaga eksternal yang berwenang bahwa suatu rumah sakit telah memenuhi standar pelayanan yang ditetapkan. Proses ini melibatkan evaluasi komprehensif terhadap berbagai aspek pelayanan rumah sakit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-graph-up-arrow text-primary me-2"></i>Manfaat Akreditasi</h5>
+                            <p class="card-text">Akreditasi Tingkat Utama memberikan jaminan kepada masyarakat bahwa RSUD Talaud menyediakan pelayanan yang aman, berkualitas, dan berstandar nasional. Ini juga mendorong kami untuk terus melakukan peningkatan mutu pelayanan secara berkelanjutan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-trophy-fill text-primary me-2"></i>Pencapaian Kami</h5>
+                            <p class="card-text">RSUD Talaud telah melalui proses penilaian yang ketat untuk meraih predikat Akreditasi Tingkat Utama. Pencapaian ini merupakan hasil dari kerja keras seluruh tim medis dan non-medis yang berdedikasi untuk memberikan pelayanan terbaik bagi masyarakat Kepulauan Talaud.</p>
+                            <p class="card-text">Kami akan terus berkomitmen untuk mempertahankan dan meningkatkan kualitas pelayanan sesuai standar akreditasi yang berlaku, demi keselamatan dan kepuasan pasien.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Komite Section -->
+    <section id="komite" class="page-section">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Komite Rumah Sakit</h1>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite Medik</h5>
+                            <p class="card-text">Komite Medik bertanggung jawab atas pengembangan standar praktik medis, penilaian kualitas pelayanan medis, dan peningkatan kompetensi profesional tenaga medis di RSUD Talaud.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite Keperawatan</h5>
+                            <p class="card-text">Komite Keperawatan berfungsi untuk mengembangkan praktik keperawatan yang berstandar, meningkatkan kualitas asuhan keperawatan, dan memastikan keselamatan pasien dalam asuhan keperawatan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite Mutu dan Keselamatan Pasien</h5>
+                            <p class="card-text">Komite ini fokus pada peningkatan mutu pelayanan dan keselamatan pasien melalui identifikasi risiko, pelaporan insiden, dan implementasi program keselamatan pasien di rumah sakit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite Etik dan Hukum</h5>
+                            <p class="card-text">Komite Etik dan Hukum bertugas untuk memberikan panduan etika profesionalisme medis, menangani masalah hukum, dan memastikan praktik medis sesuai dengan standar etika dan regulasi yang berlaku.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite PPI (Pencegahan dan Pengendalian Infeksi)</h5>
+                            <p class="card-text">Komite PPI bertanggung jawab atas program pencegahan dan pengendalian infeksi di rumah sakit, meliputi surveilans infeksi, edukasi, dan implementasi praktik hygiene yang efektif.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite Farmasi dan Terapi (KFT)</h5>
+                            <p class="card-text">Komite Farmasi dan Terapi mengawasi penggunaan obat yang rasional, mengevaluasi terapi obat, dan memastikan keamanan pasien dalam penggunaan obat di RSUD Talaud.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite Rekam Medis / Komite Informasi Kesehatan</h5>
+                            <p class="card-text">Komite ini bertanggung jawab atas pengelolaan rekam medis yang akurat, kerahasiaan data pasien, dan pengembangan sistem informasi kesehatan di rumah sakit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card committee-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Komite Kesehatan dan Keselamatan Kerja Rumah Sakit (K3RS)</h5>
+                            <p class="card-text">Komite K3RS memastikan lingkungan kerja yang aman dan sehat bagi seluruh karyawan rumah sakit, serta melaksanakan program pencegahan kecelakaan kerja.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>RSUD Kabupaten Kepulauan Talaud</h5>
+                    <p>Rumah Sakit Umum Daerah Kabupaten Kepulauan Talaud berkomitmen memberikan pelayanan kesehatan terbaik bagi masyarakat.</p>
+                    <p><i class="bi bi-geo-alt-fill me-2"></i>Jl. Raya Mala-Melonguane, Talaud-Sulut</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Menu Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none" data-page="beranda">Beranda</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none" data-page="profil">Profil</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none" data-page="pelayanan">Pelayanan</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none" data-page="ruangan">Ruangan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-white-50">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2023 RSUD Kabupaten Kepulauan Talaud. Hak Cipta Dilindungi.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .footer a[data-page]');
+            
+            // Add click event to each navigation link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get target page
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all sections
+                    const sections = document.querySelectorAll('.page-section');
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show target section
+                    const targetSection = document.getElementById(targetPage);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                    
+                    // Update active nav link
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    // Set active on clicked link and corresponding nav link
+                    this.classList.add('active');
+                    const mainNavLink = document.querySelector(`.navbar-nav .nav-link[data-page="${targetPage}"]`);
+                    if (mainNavLink) {
+                        mainNavLink.classList.add('active');
+                    }
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
